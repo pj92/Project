@@ -7,7 +7,14 @@
     </head>
 
     <body>
-        <h1>WELCOME </h1>
+
+        <ul>
+            @foreach ($tasks as $task)
+
+                <li>{{ $task }}</li>
+
+            @endforeach
+        </ul>
     </body>
 
 </html>
