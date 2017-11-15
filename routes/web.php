@@ -13,16 +13,14 @@
 
 Route::get('/', function () {
 
-    $tasks = [
+    $tasks = DB::table('tasks')->latest()->get();
 
-        'TEST',
-        'Finish my screencast',
-        'Clean the house'
-    ];
-
-    return view('welcome', compact('tasks'));
+    return view('index', compact('tasks'));
 });
 
-Route::get('/about', function () {
-	return view('about');
-});
+Route::get('/{task}', function ($id) {
+    $tasks = DB::table('tasks')->find($id);
+
+
+    return view('show', compact('tasks'));
+  });
