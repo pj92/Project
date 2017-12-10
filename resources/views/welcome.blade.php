@@ -1,4 +1,5 @@
-<!doctype html>
+@extends("layout");
+@section("content");
 <html>
 
     <head>
@@ -7,14 +8,9 @@
     </head>
 
     <body>
-
-        <ul>
-            @foreach ($tasks as $task)
-
-                <li>{{ $task->body }}</li>
-
-            @endforeach
-        </ul>
+        <h2>Following Tasks</h2>
     </body>
 
 </html>
+
+@endsection;
