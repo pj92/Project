@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Task extends Model
 {
-    public function scopeIncomplete($query, $val)
+    protected $fillable = ['body'];
 
-    {
-        return $query->where('complete',0)->get();
-    }
 }

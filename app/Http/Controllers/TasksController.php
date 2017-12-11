@@ -14,8 +14,61 @@ class TasksController extends Controller
         $tasks = Task::all();
         return view('tasks.index',compact('tasks'));
     }
-    public function show(Task $task)
+
+    public function create()
     {
-            return view('tasks.show', compact('task'));
+        return view('tasks.create', compact('task'));
+    }
+
+    public function store()
+    {
+        $this->validate(request(), [
+
+            'body' => 'required'
+        ]);
+
+
+        Task::create(request(['body']));
+
+         return redirect('/tasks');
+
+    }
+
+    public function show($id)
+    {
+        return view('tasks.show', compact('task'));
+    }
+
+    public function edit(Task $task)
+    {
+        $task = Task::find($task->id);
+        return view('tasks.edit',compact('task'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(Task $task)
+    {
+        $task->body = request('body');
+        $task->complete = request('complete');
+        $task->save();
+
+        return redirect('/tasks');
+    }
+
+
+    public function destroy(Task $task)
+    {
+        $task->delete($task);
+
+        return redirect('/tasks');
+
     }
 }
+
