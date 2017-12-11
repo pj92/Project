@@ -34,7 +34,7 @@ class TasksController extends Controller
 
     }
 
-    public function show($id)
+    public function show(Task $task)
     {
         return view('tasks.show', compact('task'));
     }
@@ -44,14 +44,6 @@ class TasksController extends Controller
         $task = Task::find($task->id);
         return view('tasks.edit',compact('task'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
 
     public function update(Task $task)
     {

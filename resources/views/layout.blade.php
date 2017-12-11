@@ -53,6 +53,7 @@
         <br>
         <br>
         <h1>Task Manager</h1>
+        <h4><a href="/project/public/tasks">Go-to Tasks</a> </h4>
         <hr>
 
 

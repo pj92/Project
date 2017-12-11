@@ -37,10 +37,13 @@
                 <td>{{$task->created_at->toFormattedDateString()}}</td>
                 <td>
                 <div class="btn-group-vertical">
-                    <button type="button" class="btn btn-info">
-                        <span class="glyphicon glyphicon-pencil"></span>
-                        <a href="/project/public/tasks/{{$task->id}}/edit">Edit</a>
-                    </button>
+                    <a href="/project/public/tasks/{{$task->id}}" class="btn btn-info">
+                        <span class="glyphicon glyphicon-eye-open"></span> Show
+                    </a>
+                    <br>
+                    <a href="/project/public/tasks/{{$task->id}}/edit" class="btn btn-warning">
+                        <span class="glyphicon glyphicon-pencil"></span> Edit
+                    </a>
                     <br>
                     <form action="/project/public/tasks/{{$task->id}}/delete" method="post" >
                         {{ csrf_field() }}
