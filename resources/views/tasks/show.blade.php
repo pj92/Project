@@ -8,7 +8,6 @@
 <body>
 
     <h2>{{ $task->body }} </h2>
-    <br>
     <hr>
 
     <div class="comments">
@@ -36,7 +35,7 @@
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Add Comment</button>
+                    <button type="submit" class="btn btn-geckoboard">Add Comment</button>
                 </div>
             </form>
 

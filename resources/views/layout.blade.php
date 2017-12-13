@@ -89,7 +89,7 @@
     <div class="starter-template">
         <br>
         <br>
-        <h1>Task Manager</h1>
+        <h1 style="color:GrayText;">Task Manager</h1>
         <hr>
 
 

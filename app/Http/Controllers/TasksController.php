@@ -26,6 +26,7 @@ class TasksController extends Controller
         $task = new Task;
         $this->validate(request(),[
             'body' => 'required',
+            'complete' => 'required',
         ]);
         $task->user_id = auth()->id();
         $task->body = request('body');

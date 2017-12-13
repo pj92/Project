@@ -25,7 +25,7 @@
             <label for="timestamp">Updated at:</label>
             <input class="form-control" type="text" placeholder="{{$task->updated_at->toDayDateTimeString()}}"  readonly>
         </div>
-        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="submit" class="btn btn-geckoboard">Save</button>
 
     </form>
     <p>
