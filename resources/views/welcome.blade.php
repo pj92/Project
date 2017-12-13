@@ -1,5 +1,5 @@
-@extends("layout");
-@section("content");
+@extends("layout")
+@section("content")
 <html>
 
     <head>
@@ -8,9 +8,9 @@
     </head>
 
     <body>
-        <h2>Following Tasks</h2>
+
     </body>
 
 </html>
 
-@endsection;
+@endsection

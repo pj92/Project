@@ -4,33 +4,34 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use Auth;
+use App\User;
 
 class TasksController extends Controller
 {
     public function index()
     {
-        #$tasks = DB::table('tasks')->get();
-
-        $tasks = Task::all();
-        return view('tasks.index',compact('tasks'));
+        $tasks = Task::where('user_id', '=',Auth::id())->orderBy('created_at','desc')->get();
+        return view('tasks.index', compact('tasks'));
     }
 
     public function create()
     {
+        $task = Task::all();
         return view('tasks.create', compact('task'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $this->validate(request(), [
-
-            'body' => 'required'
+        $task = new Task;
+        $this->validate(request(),[
+            'body' => 'required',
         ]);
-
-
-        Task::create(request(['body']));
-
-         return redirect('/tasks');
+        $task->user_id = auth()->id();
+        $task->body = request('body');
+        $task->complete = request('complete');
+        $task->save();
+        return redirect('/tasks');
 
     }
 
@@ -42,7 +43,7 @@ class TasksController extends Controller
     public function edit(Task $task)
     {
         $task = Task::find($task->id);
-        return view('tasks.edit',compact('task'));
+        return view('tasks.edit',compact('task', 'id'));
     }
 
     public function update(Task $task)

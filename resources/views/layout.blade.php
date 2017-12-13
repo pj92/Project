@@ -10,16 +10,24 @@
     <link rel="icon" href="../../favicon.ico">
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
-    <!-- jQuery library -->
+
+<!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link href ="css/app.css" rel ="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Pangolin" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Pangolin', cursive;
+        }
+    </style>
 </head>
 <title>
-    Jackal
+    Task Manager
 </title>
 <body>
 <!-- Latest compiled and minified CSS -->
@@ -35,14 +43,43 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">To-do (Palash Jain)</a>
+            <a class="navbar-brand" href="#">To-do(PJ)</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="active"><a href="/project/public/tasks">Tasks</a></li>
             </ul>
+
+            <!-- Right Side Of Navbar -->
+
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @guest
+                    <li><a href="{{ route('login') }}">Login</a></li>
+                    <li><a href="{{ route('register') }}">Register</a></li>
+                    @else
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+
+                            <ul class="dropdown-menu" role="menu">
+                                <li>
+                                    <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        Logout
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                @endguest
+            </ul>
+            <!-- End - Right Side Of Navbar -->
         </div><!--/.nav-collapse -->
     </div>
 </nav>
@@ -53,7 +90,6 @@
         <br>
         <br>
         <h1>Task Manager</h1>
-        <h4><a href="/project/public/tasks">Go-to Tasks</a> </h4>
         <hr>
 
 

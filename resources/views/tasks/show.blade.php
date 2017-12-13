@@ -1,5 +1,5 @@
-@extends("layout");
-@section("content");
+@extends("layout")
+@section("content")
 <html>
 <head>
 
@@ -18,7 +18,8 @@
                 {{$comment->body}}
                 <BR>
                 <strong>
-                    Created: {{$comment->created_at->diffForHumans()}}: &nbsp;
+                    Created: {{$comment->created_at->diffForHumans()}}:
+                    <br>
                 </strong>
             </li>
         @endforeach
@@ -46,4 +47,4 @@
 </body>
 
 </html>
-@endsection;
+@endsection

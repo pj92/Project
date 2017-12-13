@@ -9,8 +9,8 @@ use App\Comment;
 class CommentsController extends Controller
 {
     public function store(Task $task) {
-        $task->addComment(request('body'));
-
+        $userID = auth()->id();
+        $task->addComment(request('body'), $userID);
         return back();
     }
 }

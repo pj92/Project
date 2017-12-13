@@ -1,12 +1,16 @@
-@extends("layout");
-@section("content");
+@extends("layout")
+@section("content")
 <html>
 <head>
-    <title>Index</title>
 
 </head>
 <body>
-
+<?php //echo '<pre>'; print_r($tasks);exit;?>
+@if(empty($tasks))
+    <a href="/project/public/tasks/create"  class="btn btn-geckoboard">
+    <span class="glyphicon glyphicon-chevron-right"></span> Create New Task
+</a>
+@else
     <div class="row">
 
         <table class="table table-hover">
@@ -16,15 +20,16 @@
                 <th>Task Name</th>
                 <th>Status</th>
                 <th>Created On</th>
+                <th>Updated On</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-
+            <?php $i=1;?>
             @foreach ($tasks as $task)
-
             <tr>
-                <td>{{$task->id}}</td>
+           <!-- <td>{{$task->id}}</td> -->
+                <td>{{$i}}</td>
                 <td>{{ $task->body }}</td>
                 <td>
                     <?php
@@ -34,7 +39,8 @@
                                echo "Completed";}
                     ?>
                 </td>
-                <td>{{$task->created_at->toFormattedDateString()}}</td>
+                <td>{{$task->created_at->toDayDateTimeString()}}</td>
+               <td>{{$task->updated_at->toDayDateTimeString()}}</td>
                 <td>
                 <div class="btn-group-vertical">
                     <a href="/project/public/tasks/{{$task->id}}" class="btn btn-info">
@@ -55,19 +61,23 @@
                 </div>
                 </td>
             </tr>
+            <?php $i++;?>
             @endforeach
             </tbody>
         </table>
             <hr/>
-            <div class="btn-group-vertical pull-right">
-                <button type="button" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <a class="bg-primary" href="/project/public/tasks/create">Create New Task</a>
-                </button>
+            <div class="pull-right">
+                <a href="/project/public/tasks/create"  class="btn btn-geckoboard">
+                    <span class="glyphicon glyphicon-chevron-right"></span> Create New Task
+                    </a>
 
-        </div>
+
+
+
+            </div>
     </div>
+@endif
 
 </body>
 </html>
-@endsection;
+@endsection

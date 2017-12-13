@@ -2,23 +2,25 @@
 
 use App\Task;
 
-Route::get('/', function ()
-{
-    return  view('welcome');
-});
+Route::get('/', 'TasksController@index')->middleware('auth');
 
-Route::get('/tasks', 'TasksController@index');
+Route::get('/tasks', 'TasksController@index')->middleware('auth');
 
-Route::get('/tasks/create', 'TasksController@create');
+Route::get('/tasks/create', 'TasksController@create')->middleware('auth');
 
-Route::get('/tasks/{task}/edit', 'TasksController@edit');
+Route::get('/tasks/{task}/edit', 'TasksController@edit')->middleware('auth');
 
-Route::patch('/tasks/{task}/edit', 'TasksController@update');
+Route::patch('/tasks/{task}/edit', 'TasksController@update')->middleware('auth');
 
-Route::delete('/tasks/{task}/delete', 'TasksController@destroy');
+Route::delete('/tasks/{task}/delete', 'TasksController@destroy')->middleware('auth');
 
-Route::post('/tasks/{task}/comments', 'CommentsController@store');
+Route::post('/tasks/{task}/comments', 'CommentsController@store')->middleware('auth');
 
-Route::post('/tasks', 'TasksController@store');
+Route::post('/tasks', 'TasksController@store')->middleware('auth');
 
-Route::get('/tasks/{task}', 'TasksController@show');
+Route::get('/tasks/{task}', 'TasksController@show')->middleware('auth');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
